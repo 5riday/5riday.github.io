@@ -21,7 +21,7 @@ function genTimeTable() {
     let timetable = [];
     let currentTime = startTime;
     for (let i = 0; i < pTime.length; i++) {
-        timetable.push([currentTime, pTime[i].key]);
+        let aTime = currentTime;
         let hours = parseInt(currentTime.substring(0, 2));
         let minutes = parseInt(currentTime.substring(2, 4));
         minutes += pTime[i].value;
@@ -29,6 +29,13 @@ function genTimeTable() {
         minutes %= 60;
         hours % 24;
         currentTime = `${hours.toString().padStart(2, '0')}${minutes.toString().padStart(2, '0')}`;
+        let bTime = currentTime;
+        if (pTime[i].key !== 'break')
+            timetable.push([aTime, bTime, pTime[i].key]);
     }
     console.log(timetable);
+    for (let i = 0; i < timetable.length; i++) {
+        content = 'time' + (i + 1);
+        document.getElementById(content).innerHTML = timetable[i][0] + '<br>' + timetable[i][1];
+    }
 }
