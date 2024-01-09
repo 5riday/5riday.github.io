@@ -7,13 +7,22 @@
 </head>
 
 <body>
-    <h1>時間表生成</h1>
     <div>
         <label for="stime">開始時間:</label>
         <input type="text" id="stime"><br><br>
+        <label>
+            <label>
+                <input type="radio" name="grade" value="jr">初中
+            </label>
+            <label>
+                <input type="radio" name="grade" value="sr">高中
+            </label>
+        </label>
+        <br><br>
         <input type="button" value="提交" onclick="isValid24HourTime()">
     </div>
     <div id="generateTimetable">
+        <h1 id="timetableTitle">时间表</h1>
         <table>
             <tr>
                 <td>節次 Period</td>
