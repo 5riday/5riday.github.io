@@ -113,5 +113,4 @@ function isValid24HourTime() {
 }
 window.onload = function () {
     document.querySelector('input[name="grade"][value="jr"]').checked = true;
-    document.getElementByID('stime').value = "0800";
 };
