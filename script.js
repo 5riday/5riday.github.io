@@ -104,7 +104,7 @@ function isValid24HourTime() {
     let userInput = document.getElementById("stime").value;
     const timeRegex = /^(?:2[0-3]|[01][0-9]):[0-5][0-9]$|^(?:2[0-3]|[01][0-9])[0-5][0-9]$/;
     if (userInput === "") {
-        userInput = '0800'; // 设置默认时间为 0800
+        userInput = '0800';
     }
     if (!timeRegex.test(userInput))
         alert('請輸入有效的24小時制時間（例如：08:00）。');
@@ -112,5 +112,6 @@ function isValid24HourTime() {
         genTimeTable(userInput);
 }
 window.onload = function () {
-    document.querySelector('input[name="grade"][value="jr"]').checked = true; // 将初中设置为默认选项
+    document.querySelector('input[name="grade"][value="jr"]').checked = true;
+    document.getElementByID('stime').value = "0800";
 };
