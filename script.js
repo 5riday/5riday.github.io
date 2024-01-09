@@ -36,10 +36,9 @@ var juniorTimeTable = [
     { key: "cPeriod", value: dDuration }, // 第十一节
 ];
 
-
-function genTimeTable() {
+function genTimeTable(userInput) {
     let dStartTime = 480;
-    const startTime = document.getElementById("stime").value;
+    const startTime = userInput;
 
     let selectedGrade;
     const gradeOption = document.getElementsByName('grade');
@@ -57,13 +56,13 @@ function genTimeTable() {
         for (let i = 0; i < juniorTimeTable.length; i++) {
             tempTable.push([juniorTimeTable[i].value, juniorTimeTable[i].key]);
         }
-        titlecontent = "初中时间表"
+        titlecontent = "初中时间表";
     }
     else if (selectedGrade === "sr") {
         for (let i = 0; i < seniorTimeTable.length; i++) {
             tempTable.push([seniorTimeTable[i].value, seniorTimeTable[i].key]);
         }
-        titlecontent = "高中时间表"
+        titlecontent = "高中时间表";
     }
     document.getElementById('timetableTitle').innerText = titlecontent;
     let totalminutes = parseInt(startTime.substring(0, 2)) * 60 + parseInt(startTime.substring(2, 4));
@@ -104,8 +103,14 @@ function converTime(timeInMinutes) {
 function isValid24HourTime() {
     let userInput = document.getElementById("stime").value;
     const timeRegex = /^(?:2[0-3]|[01][0-9]):[0-5][0-9]$|^(?:2[0-3]|[01][0-9])[0-5][0-9]$/;
+    if (userInput === "") {
+        userInput = '0800'; // 设置默认时间为 0800
+    }
     if (!timeRegex.test(userInput))
         alert('請輸入有效的24小時制時間（例如：08:00）。');
     else
-        genTimeTable();
+        genTimeTable(userInput);
 }
+window.onload = function () {
+    document.querySelector('input[name="grade"][value="jr"]').checked = true; // 将初中设置为默认选项
+};
